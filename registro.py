@@ -4,8 +4,6 @@ voti.append(9)
 
 voti.insert(2,"7-")
 
-
-
 for voto in voti:
     print(voto)
 
