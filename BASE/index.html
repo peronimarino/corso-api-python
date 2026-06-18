@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Il mio negozio web</title></head>
+<body style="font-family: sans-serif; padding: 40px;">
+<h1>Prodotti del Database</h1>
+<button onclick="caricaDati()">Aggiorna Lista</button>
+<ul id="lista" style="margin-top:20px;"></ul>
+<script>
+// 1. Chiediamo i dati alla nostra API funzionante sulla porta 8000
+async function caricaDati() {
+let risposta = await fetch("https://ominous-disco-gxqv9jg7xgxp3p4jq-8000.app.github.dev/prodotti");
+// 2. Trasformiamo il testo JSON ricevuto in un array JavaScript
+let prodotti = await risposta.json();
+// 3. Cicliamo i dati e creiamo i nodi HTML al volo
+let listaHTML = document.getElementById("lista");
+listaHTML.innerHTML = "";
+
+    prodotti.forEach(p => {
+        let elemento = document.createElement("li");
+        let singoloElemento = p.nome + '-' + p.prezzo + '€';
+        elemento.textContent = singoloElemento;
+        listaHTML.appendChild(elemento);
+    });
+
+
+}
+</script>
+</body>
+</html>
