@@ -13,6 +13,15 @@ def dbinit():
     prezzo REAL
     )
     """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS utenti (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    token TEXT
+    )
+    """)
     conn.commit()
 
 # Controllo se è vuoto

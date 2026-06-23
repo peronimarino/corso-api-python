@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+import hashlib
+import secrets
 
 #Importo il resto del progetto
 from BASE.progetto_prodotti import router as prodotti_router
 from BASE.progetto_db import dbinit
+from BASE.progetto_utente import router as utenti_router
+
 
 #Inizializzo il DB
 dbinit()
@@ -21,6 +24,7 @@ app.add_middleware(
 )
 
 app.include_router(prodotti_router)
+app.include_router(utenti_router)
 
 # Creo una chiamata base di benvenuto
 @app.get("/")
