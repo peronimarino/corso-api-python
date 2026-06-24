@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineManiaci - Catalogo Locale</title>
+</head>
+<body style="font-family: sans-serif; max-width: 900px; margin: 30px auto; padding: 20px; line-height: 1.5;">
+
+    <h1>🎬 CineManiaci - Cerca Film</h1>
+    <p>Cerca i titoli archiviati all'interno del database locale della piattaforma.</p>
+    
+    <div style="margin-bottom: 30px; background: #f1f5f9; padding: 15px; border-radius: 6px;">
+        <input type="text" id="campoCerca" placeholder="Scrivi una parte del titolo (es. Matrix)..." style="padding: 8px; width: 300px; font-size: 14px;">
+        <button onclick="avviaRicerca()" style="padding: 8px 15px; font-size: 14px; cursor: pointer;">Cerca</button>
+    </div>
+
+    <h2>Risultati della Ricerca</h2>
+    <div id="risultati" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;">
+    </div>
+
+    <hr>
+
+    <div id="schedaFilm" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 25px; border-radius: 8px; overflow: auto;">
+        
+        <!-- LOCANDINA -->
+        <img id="schedaLocandina" 
+             style="width: 200px; border-radius: 6px; float: right; margin-left: 20px;">
+
+        <h2 id="schedaTitolo" style="color: #16a34a; margin-top: 0;"></h2>
+        <p><b>Anno di Uscita:</b> <span id="schedaAnno"></span></p>
+        <p><b>Trama del Film:</b></p>
+        <p id="schedaTrama" style="font-style: italic; color: #374151;"></p>
+    </div>
+
+    <script>
+        // URL SENZA SLASH FINALE
+        const API_URL = "https://ominous-disco-gxqv9jg7xgxp3p4jq-8000.app.github.dev/film/ricerca";
+
+        async function avviaRicerca() {
+    const campo = document.getElementById("campoCerca");
+    const keyword = campo.value.trim();
+
+    if (!keyword) {
+        alert("Inserisci almeno una parola da cercare.");
+        return;
+    }
+
+    const contenitore = document.getElementById("risultati");
+    contenitore.innerHTML = "";
+
+    try {
+        const response = await fetch(`https://ominous-disco-gxqv9jg7xgxp3p4jq-8000.app.github.dev/film/ricerca?keyword=${encodeURIComponent(keyword)}`);
+
+        if (!response.ok) {
+            alert("Nessun film trovato.");
+            return;
+        }
+
+        const dati = await response.json();
+
+        dati.forEach(film => {
+            const card = document.createElement("div");
+            card.style.border = "1px solid #e5e7eb";
+            card.style.borderRadius = "6px";
+            card.style.padding = "10px";
+            card.style.background = "#ffffff";
+            card.style.cursor = "pointer";
+
+            card.innerHTML = `
+                <h3 style="margin-top: 0; font-size: 16px;">${film.titolo}</h3>
+                <p style="margin: 5px 0;"><b>Anno:</b> ${film.anno ?? "N/D"}</p>
+                <button style="margin-top: 5px; padding: 5px 10px; font-size: 13px;">
+                    Apri scheda
+                </button>
+            `;
+
+            card.addEventListener("click", () => {
+                apriScheda(film);
+            });
+
+            contenitore.appendChild(card);
+        });
+
+    } catch (err) {
+        console.error(err);
+        alert("Errore di connessione al server.");
+    }
+}
+
+        function apriScheda(film) {
+            const scheda = document.getElementById("schedaFilm");
+            const titolo = document.getElementById("schedaTitolo");
+            const anno = document.getElementById("schedaAnno");
+            const trama = document.getElementById("schedaTrama");
+            const locandina = document.getElementById("schedaLocandina");
+
+            titolo.textContent = film.titolo;
+            anno.textContent = film.anno ?? "N/D";
+            trama.textContent = film.trama || "Trama non disponibile.";
+            locandina.src = film.url_locandina;
+            locandina.alt = `Locandina di ${film.titolo}`;
+            
+            scheda.style.display = "block";
+            scheda.scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+
+</body>
+</html>
