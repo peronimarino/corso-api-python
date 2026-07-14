@@ -68,16 +68,26 @@ def dbinit():
         print("Inseriti con successo 15 film di prova nel database!")
 
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS playlist_video (
+    CREATE TABLE IF NOT EXISTS playlist (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         titolo_playlist TEXT NOT NULL,
         utente_id INTEGER NOT NULL,
         film_id INTEGER,
-        FOREIGN KEY (utente_id) REFERENCES utenti (id),
-        FOREIGN KEY (film_id) REFERENCES film (id)
+        FOREIGN KEY (utente_id) REFERENCES utenti (id)
     )
     """)
 
+    cursor.execute(""" 
+    CREATE TABLE IF NOT EXISTS playlist_film ( 
+        playlist_id INTEGER NOT NULL, 
+        film_id INTEGER NOT NULL, 
+        PRIMARY KEY (playlist_id, film_id), 
+        FOREIGN KEY (playlist_id) REFERENCES playlist (id) ON DELETE CASCADE, 
+        FOREIGN KEY (film_id) REFERENCES film (id) ON DELETE CASCADE 
+    ) 
+    """)
+    cursor.execute("DROP TABLE IF EXISTS playlist_vide")
+    cursor.execute("DROP TABLE IF EXISTS playlist_video")
     conn.commit()
 
     conn.close()
