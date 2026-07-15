@@ -19,9 +19,22 @@ def dbinit():
     CREATE TABLE IF NOT EXISTS elementi_video (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         film_id INTEGER NOT NULL,
+        utente_id INTEGER NOT NULL,
         url_video_youtube TEXT NOT NULL,
         commento TEXT,
-        FOREIGN KEY (film_id) REFERENCES film (id)
+        FOREIGN KEY (film_id) REFERENCES film (id),
+        FOREIGN KEY (utente_id) REFERENCES utenti (id)
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS commenti (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    film_id INTEGER NOT NULL,
+    utente_id INTEGER NOT NULL,
+    testo TEXT NOT NULL,
+    FOREIGN KEY (film_id) REFERENCES film(id),
+    FOREIGN KEY (utente_id) REFERENCES utenti(id)
     )
     """)
 

@@ -11,3 +11,11 @@ class UtenteAuth(BaseModel):
 
 class PlaylistIn(BaseModel):
     titolo_playlist: str
+
+class VideoIn(BaseModel):
+    url_video_youtube: str
+    commento: str
+
+
+class CommentoIn(BaseModel):
+    testo: str
