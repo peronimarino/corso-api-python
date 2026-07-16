@@ -1,0 +1,97 @@
+body {
+
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background-color: #f8f4ee;
+    color: #2c2c2c;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+}
+
+.container {
+
+    width: 100%;
+    max-width: 400px;
+
+    text-align: center;
+}
+
+h1 {
+
+    font-family: "Playfair Display", serif;
+
+    color: #7c4f2b;
+
+    margin-bottom: 10px;
+}
+
+.sottotitolo {
+
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    box-sizing: border-box;
+}
+
+button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    background: #7c4f2b;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+button:hover {
+
+    background: #a66b3d;
+}
+
+.link {
+
+    margin-top: 20px;
+}
+
+a {
+
+    color: #7c4f2b;
+
+    text-decoration: none;
+}

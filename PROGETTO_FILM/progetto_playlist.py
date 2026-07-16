@@ -323,6 +323,77 @@ def dettaglio_playlist(
     return risultato
 
 # ==========================
+# RIMUOVI FILM DA PLAYLIST
+# ==========================
+
+@router.delete("/playlist/rimuovi-film")
+def rimuovi_film_playlist(
+    playlist_id: int,
+    film_id: int,
+    token: str
+):
+
+    id_utente = recupera_utente_da_token(token)
+
+    conn = sqlite3.connect("database.db")
+
+    cursor = conn.cursor()
+
+    # Verifica che la playlist appartenga all'utente
+    cursor.execute(
+        """
+        SELECT id
+        FROM playlist
+        WHERE id = ?
+        AND utente_id = ?
+        """,
+        (
+            playlist_id,
+            id_utente
+        )
+    )
+
+    playlist = cursor.fetchone()
+
+    if playlist is None:
+
+        conn.close()
+
+        raise HTTPException(
+            status_code=404,
+            detail="Playlist non trovata"
+        )
+
+    # Rimuove il film dalla playlist
+    cursor.execute(
+        """
+        DELETE FROM playlist_film
+        WHERE playlist_id = ?
+        AND film_id = ?
+        """,
+        (
+            playlist_id,
+            film_id
+        )
+    )
+
+    if cursor.rowcount == 0:
+
+        conn.close()
+
+        raise HTTPException(
+            status_code=404,
+            detail="Film non presente nella playlist"
+        )
+
+    conn.commit()
+
+    conn.close()
+
+    return {
+        "messaggio": "Film rimosso dalla playlist"
+    }
+# ==========================
 # ELIMINA PLAYLIST
 # ==========================
 

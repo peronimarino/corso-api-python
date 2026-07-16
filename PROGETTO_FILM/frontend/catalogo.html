@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineManiaci - Catalogo</title>
+    <link rel="stylesheet" href="./css/catalogo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>🎬 CineManiaci</h1>
+        <nav>
+
+    <a href="catalogo.html">Catalogo</a>
+
+    <a href="playlist.html">Playlist</a>
+
+    <a href="login.html" id="loginLink">
+        Login
+    </a>
+
+    <a href="register.html" id="registerLink">
+        Registrati
+    </a>
+
+    <span id="utenteLoggato"></span>
+
+    <button
+        id="logoutBtn"
+        onclick="logout()"
+        style="display:none;">
+
+        Logout
+
+    </button>
+
+</nav>
+    </header>
+
+    <main>
+        <section class="ricerca">
+            <input type="text" id="campoRicerca" placeholder="Cerca un film...">
+            <button onclick="cercaFilm()">Cerca</button>
+        </section>
+
+        <section id="risultati"></section>
+        <section id="schedaFilm"></section>
+    </main>
+
+    <script src="./js/catalogo.js"></script>
+</body>
+
+</html>

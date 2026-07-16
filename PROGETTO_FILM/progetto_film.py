@@ -246,3 +246,93 @@ def commenti_film(id_film: int):
     conn.close()
 
     return risultato
+
+# ==========================
+# ELIMINA COMMENTO
+# ==========================
+
+@router.delete("/film/commento")
+def elimina_commento(
+    commento_id: int,
+    token: str
+):
+
+    id_utente = recupera_utente_da_token(token)
+
+    conn = sqlite3.connect("database.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        DELETE FROM commenti
+        WHERE id = ?
+        AND utente_id = ?
+        """,
+        (
+            commento_id,
+            id_utente
+        )
+    )
+
+    if cursor.rowcount == 0:
+
+        conn.close()
+
+        raise HTTPException(
+            status_code=404,
+            detail="Commento non trovato"
+        )
+
+    conn.commit()
+
+    conn.close()
+
+    return {
+        "messaggio": "Commento eliminato"
+    }
+
+# ==========================
+# ELIMINA VIDEO
+# ==========================
+
+@router.delete("/film/video")
+def elimina_video(
+    video_id: int,
+    token: str
+):
+
+    id_utente = recupera_utente_da_token(token)
+
+    conn = sqlite3.connect("database.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        DELETE FROM elementi_video
+        WHERE id = ?
+        AND utente_id = ?
+        """,
+        (
+            video_id,
+            id_utente
+        )
+    )
+
+    if cursor.rowcount == 0:
+
+        conn.close()
+
+        raise HTTPException(
+            status_code=404,
+            detail="Video non trovato"
+        )
+
+    conn.commit()
+
+    conn.close()
+
+    return {
+        "messaggio": "Video eliminato"
+    }

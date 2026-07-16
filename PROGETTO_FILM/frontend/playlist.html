@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineManiaci - Playlist</title>
+    <link rel="stylesheet" href="./css/playlist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <h1>🎬 CineManiaci</h1>
+        <nav>
+            <a href="catalogo.html">Catalogo</a>
+            <a href="playlist.html">Playlist</a>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="register.html" id="registerLink">Registrati</a>
+            <span id="utenteLoggato"></span>
+            <button id="logoutBtn" onclick="logout()" style="display:none;">Logout</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="creazione">
+            <h2>Le Mie Playlist</h2>
+            <input type="text" id="titoloPlaylist" placeholder="Nome playlist">
+            <button onclick="creaPlaylist()">Crea Playlist</button>
+        </section>
+
+        <section>
+            <h2>Le Mie Playlist</h2>
+            <div id="miePlaylist"></div>
+        </section>
+
+        <section>
+            <h2>Playlist della Community</h2>
+            <div id="playlistPubbliche"></div>
+        </section>
+
+    </main>
+
+    <script src="./js/playlist.js"></script>
+
+</body>
+
+</html>

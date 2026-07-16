@@ -1,0 +1,123 @@
+body {
+
+    margin: 0;
+
+    background-color: #f8f4ee;
+
+    color: #2c2c2c;
+
+    font-family: Arial, sans-serif;
+}
+
+header {
+
+    padding: 20px;
+
+    text-align: center;
+
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+}
+
+h1 {
+
+    font-family: "Playfair Display", serif;
+
+    color: #7c4f2b;
+}
+
+nav {
+
+    margin-top: 15px;
+}
+
+nav a {
+
+    color: #7c4f2b;
+
+    text-decoration: none;
+
+    margin: 0 10px;
+
+    font-weight: bold;
+}
+
+main {
+
+    max-width: 1100px;
+
+    margin: 30px auto;
+
+    padding: 20px;
+}
+
+.creazione {
+
+    margin-bottom: 40px;
+}
+
+.creazione input {
+
+    width: 300px;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+}
+
+button {
+
+    padding: 10px 15px;
+
+    background: #7c4f2b;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+button:hover {
+
+    background: #a66b3d;
+}
+
+.card {
+
+    background: white;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card button {
+
+    margin-top: 10px;
+
+    margin-right: 10px;
+}
+
+#utenteLoggato {
+
+    margin-left: 20px;
+
+    color: #7c4f2b;
+
+    font-weight: bold;
+}
+
+#logoutBtn {
+
+    margin-left: 10px;
+}
