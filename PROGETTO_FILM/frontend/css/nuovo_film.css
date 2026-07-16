@@ -1,0 +1,124 @@
+body {
+
+    margin: 0;
+
+    background-color: #f8f4ee;
+
+    color: #2c2c2c;
+
+    font-family: Arial, sans-serif;
+}
+
+header {
+
+    padding: 20px;
+
+    text-align: center;
+
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+}
+
+h1 {
+
+    font-family: "Playfair Display", serif;
+
+    color: #7c4f2b;
+}
+
+nav {
+
+    margin-top: 15px;
+}
+
+nav a {
+
+    color: #7c4f2b;
+
+    text-decoration: none;
+
+    margin: 0 10px;
+
+    font-weight: bold;
+}
+
+main {
+
+    display: flex;
+
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+.container {
+
+    background: white;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.container h2 {
+
+    color: #7c4f2b;
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+}
+
+input,
+textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    box-sizing: border-box;
+
+    font-size: 15px;
+}
+
+textarea {
+
+    min-height: 150px;
+
+    resize: vertical;
+}
+
+button {
+
+    background: #7c4f2b;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+button:hover {
+
+    background: #a66b3d;
+}

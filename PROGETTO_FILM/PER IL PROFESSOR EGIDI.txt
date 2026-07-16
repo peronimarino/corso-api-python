@@ -1,0 +1,177 @@
+
+=========================================================
+                    CINEMANIACI
+     Community e Catalogo per Appassionati di Cinema
+=========================================================
+
+Autore:
+Marino Peroni
+
+Corso:
+ITS FABBRICA DIGITALE
+
+Materia:
+Web Developing e API
+
+Anno:
+2025/2026
+
+
+---------------------------------------------------------
+DESCRIZIONE DEL PROGETTO
+---------------------------------------------------------
+
+CineManiaci è una piattaforma web dedicata agli appassionati
+di cinema che permette di consultare un catalogo di film,
+creare playlist personalizzate, condividere recensioni e
+video YouTube e interagire con altri utenti registrati.
+
+L'applicazione è stata sviluppata utilizzando un'architettura
+client-server composta da frontend HTML, CSS e JavaScript e
+backend Python con FastAPI e database SQLite.
+
+
+---------------------------------------------------------
+TECNOLOGIE UTILIZZATE
+---------------------------------------------------------
+
+Backend:
+- Python
+- FastAPI
+- SQLite
+
+Frontend:
+- HTML5
+- CSS3
+- JavaScript
+
+Strumenti:
+- Swagger/OpenAPI
+- GitHub Codespaces
+- GitHub
+
+
+---------------------------------------------------------
+FUNZIONALITÀ IMPLEMENTATE
+---------------------------------------------------------
+
+GESTIONE UTENTI
+
+- Registrazione utente
+- Login
+- Logout
+- Gestione sessione tramite token
+- Saluto personalizzato per utenti autenticati
+
+
+CATALOGO FILM
+
+- Ricerca film per titolo
+- Visualizzazione scheda film
+- Locandine dei film
+- Visualizzazione trama
+- Visualizzazione anno di uscita
+
+
+GESTIONE FILM
+
+- Inserimento manuale di nuovi film
+- Eliminazione dei film inseriti
+- Protezione tramite autenticazione
+- Associazione del film all'utente creatore
+
+
+COMMENTI
+
+- Visualizzazione commenti
+- Inserimento commenti
+- Eliminazione dei propri commenti
+
+
+VIDEO YOUTUBE
+
+- Inserimento link YouTube
+- Visualizzazione contenuti video
+- Generazione automatica delle miniature
+- Apertura video in una nuova scheda
+- Eliminazione dei propri video
+
+
+PLAYLIST
+
+- Creazione playlist personali
+- Eliminazione playlist
+- Visualizzazione playlist personali
+- Visualizzazione playlist pubbliche
+- Apertura dettaglio playlist
+- Aggiunta film alle playlist
+- Rimozione film dalle playlist
+
+
+---------------------------------------------------------
+STRUTTURA DEL DATABASE
+---------------------------------------------------------
+
+Le principali tabelle del progetto sono:
+
+- utenti
+- film
+- playlist
+- playlist_film
+- commenti
+- elementi_video
+
+Le relazioni consentono di collegare utenti, film,
+commenti, video e playlist in maniera coerente e sicura.
+
+
+---------------------------------------------------------
+OBIETTIVI RAGGIUNTI
+---------------------------------------------------------
+
+Il progetto permette agli utenti di:
+
+- Consultare un catalogo cinematografico
+- Organizzare film in playlist personalizzate
+- Condividere recensioni
+- Condividere contenuti video
+- Inserire nuovi film nel sistema
+- Gestire i propri contenuti
+
+
+---------------------------------------------------------
+POSSIBILI SVILUPPI FUTURI
+---------------------------------------------------------
+
+- Integrazione completa con TMDB
+- Sistema di valutazione tramite stelle
+- Modifica commenti e recensioni
+- Ricerca avanzata per genere e anno
+- Profilo utente dedicato
+- Dashboard amministratore
+- Sistema di notifiche
+
+
+---------------------------------------------------------
+CONCLUSIONI
+---------------------------------------------------------
+
+CineManiaci rappresenta una piattaforma completa per la
+gestione e la condivisione di contenuti cinematografici.
+
+Il progetto ha consentito di applicare concretamente i
+concetti di sviluppo web full stack affrontando temi quali:
+
+- sviluppo API REST
+- autenticazione e autorizzazione
+- gestione database relazionali
+- integrazione frontend/backend
+- progettazione dell'esperienza utente
+
+Il risultato finale è una web application funzionante,
+modulare ed estendibile, pronta per future evoluzioni e
+integrazioni.
+
+=========================================================
+                FINE DOCUMENTAZIONE
+=========================================================

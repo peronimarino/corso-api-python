@@ -19,3 +19,9 @@ class VideoIn(BaseModel):
 
 class CommentoIn(BaseModel):
     testo: str
+
+class FilmIn(BaseModel):
+    titolo: str
+    trama: str
+    anno: int
+    url_locandina: str

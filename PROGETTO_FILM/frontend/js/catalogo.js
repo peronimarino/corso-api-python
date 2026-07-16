@@ -227,12 +227,25 @@ video.forEach(videoItem =>
         {
             htmlVideo = "<p>Nessun video presente.</p>";
         }
+        let pulsanteEliminaFilm = "";
 
+        if(film.utente_id)
+        {
+            pulsanteEliminaFilm = `
+                <button
+                    onclick="eliminaFilm(${film.id})">
+
+                    🗑️ Elimina Film
+
+                </button>
+            `;
+        }
         const scheda =
             document.getElementById("schedaFilm");
 
         scheda.innerHTML = `
             <h2>${film.titolo}</h2>
+            ${pulsanteEliminaFilm}
             <img class="locandina" src="${film.url_locandina}" alt="${film.titolo}">
             <p><strong>Anno:</strong> ${film.anno}</p>
             <p>${film.trama}</p>
@@ -312,6 +325,7 @@ video.forEach(videoItem =>
 // CONTROLLO LOGIN
 // ==========================
 
+
 document.addEventListener(
     "DOMContentLoaded",
     controllaLogin
@@ -319,6 +333,12 @@ document.addEventListener(
 
 function controllaLogin()
 {
+
+    document.getElementById(
+    "nuovoFilmLink"
+    ).style.display = "none";
+
+
     const token =
         localStorage.getItem("session_token");
 
@@ -327,6 +347,11 @@ function controllaLogin()
 
     if (token && username)
     {
+
+        document.getElementById(
+            "nuovoFilmLink"
+        ).style.display ="inline-block";
+        
         document.getElementById(
             "utenteLoggato"
         ).textContent =
@@ -723,6 +748,67 @@ async function aggiungiFilmPlaylist(idFilm)
 
         alert(
             "Errore durante l'aggiunta del film"
+        );
+    }
+}
+
+async function eliminaFilm(filmId)
+{
+    const token =
+        localStorage.getItem(
+            "session_token"
+        );
+
+    const conferma =
+        confirm(
+            "Vuoi eliminare questo film?"
+        );
+
+    if(!conferma)
+    {
+        return;
+    }
+
+    try
+    {
+        const response =
+            await fetch(
+                `${API_URL}/film?film_id=${filmId}&token=${token}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+        const dati =
+            await response.json();
+
+        if(!response.ok)
+        {
+            throw new Error(
+                dati.detail ||
+                "Errore durante l'eliminazione"
+            );
+        }
+
+        alert(
+            "Film eliminato con successo!"
+        );
+
+        document.getElementById(
+            "schedaFilm"
+        ).style.display = "none";
+
+        document.getElementById(
+            "risultati"
+        ).innerHTML = "";
+
+    }
+    catch(error)
+    {
+        console.error(error);
+
+        alert(
+            error.message
         );
     }
 }

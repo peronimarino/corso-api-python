@@ -1,5 +1,11 @@
 from fastapi import APIRouter, HTTPException
-from .progetto_classi_validazione import VideoIn, CommentoIn
+
+from .progetto_classi_validazione import (
+    VideoIn,
+    CommentoIn,
+    FilmIn
+)
+
 import sqlite3
 
 # Creo il mini-gestore delle rotte
@@ -335,4 +341,96 @@ def elimina_video(
 
     return {
         "messaggio": "Video eliminato"
+    }
+
+# ==========================
+# AGGIUNGI FILM
+# ==========================
+
+@router.post("/film")
+def aggiungi_film(
+    film: FilmIn,
+    token: str
+):
+
+    id_utente = recupera_utente_da_token(token)
+
+    conn = sqlite3.connect("database.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO film
+        (
+            titolo,
+            trama,
+            anno,
+            url_locandina,
+            tmdb_id,
+            utente_id
+        )
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            film.titolo,
+            film.trama,
+            film.anno,
+            film.url_locandina,
+            None,
+            id_utente
+        )
+    )
+
+    conn.commit()
+
+    conn.close()
+
+    return {
+        "messaggio": "Film aggiunto con successo"
+    }
+
+# ==========================
+# ELIMINA FILM
+# ==========================
+
+@router.delete("/film")
+def elimina_film(
+    film_id: int,
+    token: str
+):
+
+    id_utente = recupera_utente_da_token(token)
+
+    conn = sqlite3.connect("database.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        DELETE FROM film
+        WHERE id = ?
+        AND utente_id = ?
+        """,
+        (
+            film_id,
+            id_utente
+        )
+    )
+
+    if cursor.rowcount == 0:
+
+        conn.close()
+
+        raise HTTPException(
+            status_code=404,
+            detail="Film non trovato o non di tua proprietà"
+        )
+
+    conn.commit()
+
+    conn.close()
+
+    return {
+        "messaggio": "Film eliminato con successo"
     }
